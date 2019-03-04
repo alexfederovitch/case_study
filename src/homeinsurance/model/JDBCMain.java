@@ -10,9 +10,15 @@ public class JDBCMain {
 		
 		UserDAO u_dao = new UserDAO();
 		List<User> userList = u_dao.getAllUsers();
-//		for (User u : userList) {
-//			System.out.printf("User ID %d: %s\n", u.getUserId(),u.getUserName());
-//		}
+		for (User u : userList) {
+			System.out.printf("User ID %d: %s\n", u.getUserId(),u.getUserName());
+		}
+		
+		HomeownerDAO h_dao = new HomeownerDAO();
+		List<Homeowner> homeownerList = h_dao.getAllHomeowners();
+		for (Homeowner h : homeownerList) {
+//			System.out.printf("User ID %d: %s %s %s\n", h.getUserId(), h.getFirstName(), h.getLastName());
+		}
 
 	}
 

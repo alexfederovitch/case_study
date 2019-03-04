@@ -4,7 +4,7 @@ public class Quote {
 	
 	private int quoteId;
 	private int locationId;
-	private float montlyPremium;
+	private float monthlyPremium;
 	private float dwellingCoverage;
 	private float detatchedStructures;
 	private float personalProperty;
@@ -13,11 +13,11 @@ public class Quote {
 	private float deductible;
 	
 	public Quote(int quoteId, int locationId, float montlyPremium, float dwellingCoverage, float detatchedStructures,
-			float personalProperty, float addLivingExp, float medicalExpenses, float deductible) {
+			float personalProperty, float addLivingExp, float medicalExpenses, float deductible, float monthlyPremium) {
 		super();
 		this.quoteId = quoteId;
 		this.locationId = locationId;
-		this.montlyPremium = montlyPremium;
+		this.monthlyPremium = monthlyPremium;
 		this.dwellingCoverage = dwellingCoverage;
 		this.detatchedStructures = detatchedStructures;
 		this.personalProperty = personalProperty;
@@ -38,11 +38,11 @@ public class Quote {
 	public void setLocationId(int locationId) {
 		this.locationId = locationId;
 	}
-	public float getMontlyPremium() {
-		return montlyPremium;
+	public float getMonthlyPremium() {
+		return monthlyPremium;
 	}
-	public void setMontlyPremium(float montlyPremium) {
-		this.montlyPremium = montlyPremium;
+	public void setMonthlyPremium(float monthlyPremium) {
+		this.monthlyPremium = monthlyPremium;
 	}
 	public float getDwellingCoverage() {
 		return dwellingCoverage;

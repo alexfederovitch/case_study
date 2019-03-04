@@ -17,8 +17,7 @@ public class OracleConnection {
 			.getResourceAsStream(
 					"properties/db.properties");
 	prop.load(inputStream);
-//	Class.forName(prop.getProperty("driver"));
-	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Class.forName(prop.getProperty("driver"));
 	final Connection connection =
 			DriverManager.getConnection(prop.getProperty("url"),
 			prop.getProperty("user"), prop.getProperty("password"));
