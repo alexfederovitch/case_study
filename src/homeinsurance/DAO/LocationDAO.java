@@ -1,4 +1,4 @@
-package homeinsurance.model;
+package homeinsurance.DAO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,18 +8,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PolicyDAO {
+import homeinsurance.model.Location;
+
+public class LocationDAO {
 	
-	public List<Policy> getAllPolicies() throws SQLException {
+	public List<Location> getAllLocatioins() throws SQLException {
 		
 		// Declare variables
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Policy p = null;
-		List<Policy> policyList = null;
+		Location l = null;
+		List<Location> locationList = null;
 		// Assign query string to a variable
-		String pString = "select * from users";
+		String pString = "select * from locations";
 		// Create MySqlConnection class instance
 		OracleConnection mysql = new OracleConnection();
 		// Begin try/catch block to query the database
@@ -34,23 +36,25 @@ public class PolicyDAO {
 			// Run query and assign to ResultSet
 			rs = stmt.executeQuery(pString);
                         //Create list to hold User objects
-			policyList = new ArrayList<Policy>();
+			locationList = new ArrayList<Location>();
 			// Read the ResultSet
 			while (rs.next()) {
 				// Each iteration creates a new user
-				p = new Policy(0, 0, 0, 0, null, null, pString);
+				l = new Location(0, 0, pString, pString, pString, pString, pString, pString, pString);
 				// Assign columns/fields to related fields in the User object
                                 // 1,2 and 3 represent column numbers/positions
-				p.setPolicyId(rs.getInt(1));
-				p.setQuoteId(rs.getInt(2));
-				p.setUserId(rs.getInt(3));
-				p.setTerm(rs.getInt(4));
-				p.setEffectiveDate(rs.getDate(5));
-				p.setEndDate(rs.getDate(6));
-				p.setPolicyStatus(rs.getString(7));
+				l.setLocationId(rs.getInt(1));
+				l.setUserId(rs.getInt(2));
+				l.setResidenceType(rs.getString(3));
+				l.setAddressLine1(rs.getString(4));
+				l.setAddressLine2(rs.getString(5));
+				l.setCity(rs.getString(6));
+				l.setLocationState(rs.getString(7));
+				l.setZipCode(rs.getString(8));
+				l.setResidenceUse(rs.getString(9));
 
 				// Add the policy to the list
-				policyList.add(p);
+				locationList.add(l);
 				// Repeat until rs.next() returns false (i.e., end of ResultSet)
 			}
 		}
@@ -71,7 +75,7 @@ public class PolicyDAO {
 				conn.close();
 			}
 		}
-		return policyList;
-	} // End of getAllPolicies method
+		return locationList;
+	} // End of getAllLocations method
 
 }

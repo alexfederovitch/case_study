@@ -7,11 +7,11 @@ public class Homeowner {
 	private String firstName;
 	private String lastName;
 	private Date dob;
-	private boolean retiredStatus;
+	private String retiredStatus;
 	private String ssn;
 	private String email;
 	
-	public Homeowner(int userId, String firstName, String lastName, Date dob, boolean retiredStatus, String ssn,
+	public Homeowner(int userId, String firstName, String lastName, Date dob,  String retiredStatus, String ssn,
 			String email) {
 		super();
 		this.userId = userId;
@@ -47,11 +47,11 @@ public class Homeowner {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	public boolean isRetiredStatus() {
+	public String isRetiredStatus() {
 		return retiredStatus;
 	}
-	public void setRetiredStatus(boolean retiredStatus) {
-		this.retiredStatus = retiredStatus;
+	public void setRetiredStatus(String string) {
+		this.retiredStatus = string;
 	}
 	public String getSsn() {
 		return ssn;

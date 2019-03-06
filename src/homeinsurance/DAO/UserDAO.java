@@ -1,4 +1,4 @@
-package homeinsurance.model;
+package homeinsurance.DAO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,16 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuoteDAO {
-	
-	public List<Quote> getAllQuotes() throws SQLException {
+import homeinsurance.model.User;
+
+public class UserDAO {
+
+	public List<User> getAllUsers() throws SQLException {
 		
 		// Declare variables
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Quote q = null;
-		List<Quote> quoteList = null;
+		User u = null;
+		List<User> userList = null;
 		// Assign query string to a variable
 		String qString = "select * from users";
 		// Create MySqlConnection class instance
@@ -34,25 +36,20 @@ public class QuoteDAO {
 			// Run query and assign to ResultSet
 			rs = stmt.executeQuery(qString);
                         //Create list to hold User objects
-			quoteList = new ArrayList<Quote>();
+			userList = new ArrayList<User>();
 			// Read the ResultSet
 			while (rs.next()) {
 				// Each iteration creates a new user
-				q = new Quote(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+				u = new User(0, qString, qString, qString);
 				// Assign columns/fields to related fields in the User object
                                 // 1,2 and 3 represent column numbers/positions
-				q.setQuoteId(rs.getInt(1));
-				q.setLocationId(rs.getInt(2));
-				q.setMonthlyPremium(rs.getFloat(3));
-				q.setDwellingCoverage(rs.getFloat(4));
-				q.setDetatchedStructures(rs.getFloat(5));
-				q.setPersonalProperty(rs.getFloat(6));
-				q.setAddLivingExp(rs.getFloat(7));
-				q.setMedicalExpenses(rs.getFloat(8));
-				q.setDeductible(rs.getFloat(9));
+				u.setUserId(rs.getInt(1));
+				u.setUserName(rs.getString(2));
+				u.setPassword(rs.getString(3));
+				u.setAdminRole(rs.getString(4));
 
-				// Add the quote to the list
-				quoteList.add(q);
+				// Add the user to the list
+				userList.add(u);
 				// Repeat until rs.next() returns false (i.e., end of ResultSet)
 			}
 		}
@@ -73,7 +70,6 @@ public class QuoteDAO {
 				conn.close();
 			}
 		}
-		return quoteList;
-	} // End of getAllQuotes method
-
+		return userList;
+	} // End of getAllUsers method
 }

@@ -1,4 +1,4 @@
-package homeinsurance.model;
+package homeinsurance.DAO;
 
 import java.io.IOException;
 import java.io.InputStream;

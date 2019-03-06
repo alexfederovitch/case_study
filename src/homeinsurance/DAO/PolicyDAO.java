@@ -1,4 +1,4 @@
-package homeinsurance.model;
+package homeinsurance.DAO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,18 +8,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeownerDAO {
+import homeinsurance.model.Policy;
+
+public class PolicyDAO {
 	
-	public List<Homeowner> getAllHomeowners() throws SQLException {
+	public List<Policy> getAllPolicies() throws SQLException {
 		
 		// Declare variables
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		Homeowner h = null;
-		List<Homeowner> homeownerList = null;
+		Policy p = null;
+		List<Policy> policyList = null;
 		// Assign query string to a variable
-		String pString = "select * from users";
+		String pString = "select * from policies";
 		// Create MySqlConnection class instance
 		OracleConnection mysql = new OracleConnection();
 		// Begin try/catch block to query the database
@@ -34,23 +36,23 @@ public class HomeownerDAO {
 			// Run query and assign to ResultSet
 			rs = stmt.executeQuery(pString);
                         //Create list to hold User objects
-			homeownerList = new ArrayList<Homeowner>();
+			policyList = new ArrayList<Policy>();
 			// Read the ResultSet
 			while (rs.next()) {
 				// Each iteration creates a new user
-				h = new Homeowner(0, pString, pString, null, false, pString, pString);
+				p = new Policy(0, 0, 0, 0, null, null, pString);
 				// Assign columns/fields to related fields in the User object
                                 // 1,2 and 3 represent column numbers/positions
-				h.setUserId(rs.getInt(1));
-				h.setFirstName(rs.getString(2));
-				h.setLastName(rs.getString(3));
-				h.setDob(rs.getDate(4));
-				h.setRetiredStatus(rs.getBoolean(5));
-				h.setSsn(rs.getString(6));
-				h.setEmail(rs.getString(7));
+				p.setPolicyId(rs.getInt(1));
+				p.setQuoteId(rs.getInt(2));
+				p.setUserId(rs.getInt(3));
+				p.setTerm(rs.getInt(4));
+				p.setEffectiveDate(rs.getDate(5));
+				p.setEndDate(rs.getDate(6));
+				p.setPolicyStatus(rs.getString(7));
 
 				// Add the policy to the list
-				homeownerList.add(h);
+				policyList.add(p);
 				// Repeat until rs.next() returns false (i.e., end of ResultSet)
 			}
 		}
@@ -71,7 +73,7 @@ public class HomeownerDAO {
 				conn.close();
 			}
 		}
-		return homeownerList;
-	} // End of getAllHomeowners method
+		return policyList;
+	} // End of getAllPolicies method
 
 }

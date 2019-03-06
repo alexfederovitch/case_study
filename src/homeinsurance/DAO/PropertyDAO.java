@@ -1,4 +1,4 @@
-package homeinsurance.model;
+package homeinsurance.DAO;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import homeinsurance.model.Property;
 
 public class PropertyDAO {
 	
@@ -19,7 +21,7 @@ public class PropertyDAO {
 		Property p = null;
 		List<Property> propList = null;
 		// Assign query string to a variable
-		String pString = "select * from users";
+		String pString = "select * from properties";
 		// Create MySqlConnection class instance
 		OracleConnection mysql = new OracleConnection();
 		// Begin try/catch block to query the database
