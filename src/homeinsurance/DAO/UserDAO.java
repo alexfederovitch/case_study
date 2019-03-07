@@ -1,6 +1,7 @@
 package homeinsurance.DAO;
 
 import java.io.IOException;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,61 @@ import java.util.List;
 import homeinsurance.model.User;
 
 public class UserDAO {
+	
+	public Integer insertUser(User user) throws SQLException, ClassNotFoundException, IOException{
+		// Declare variables
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		// Assign query string to a variable
+		String iString = "insert into users (user_name, password, admin_role) values (?,?,?)";
+		
+		int ID = -1;
+	    String[] COL = {"user_id"};
+
+		// Create OracleConnection class instance
+		OracleConnection mysql = new OracleConnection();
+		// Begin try/catch block to query the database
+		try {
+			// Connect to database
+			conn = mysql.getConnection();
+                        // If the connection fails the application won't make it to this point
+			stmt = conn.prepareStatement(iString, COL);
+			
+			System.out.println("Connected to database.");
+
+			// Run query and assign to ResultSet
+//			stmt.executeQuery();
+			
+	        stmt.setString(1, user.getUserName());
+	        stmt.setString(2, user.getPassword());
+	        stmt.setString(3, user.getAdminRole());	      
+	        
+	        stmt.executeUpdate();
+	        
+	        rs = stmt.getGeneratedKeys();
+	        if(rs != null && rs.next()) {
+	            ID = rs.getInt(1);
+	        }	            	
+	        System.out.print(ID);
+	        } catch (ClassNotFoundException | IOException | SQLException e) {
+//			System.out.println("Error: " + e.getMessage());
+//	        e.getStackTrace();
+	        e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}			
+		}
+		return ID;
+	}
 
 	public List<User> getAllUsers() throws SQLException {
 		
@@ -73,3 +129,4 @@ public class UserDAO {
 		return userList;
 	} // End of getAllUsers method
 }
+

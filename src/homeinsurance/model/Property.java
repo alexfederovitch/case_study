@@ -12,6 +12,7 @@ public class Property {
 	private int fullBaths;
 	private int halfBaths;
 	private boolean pool;
+	
 	public Property(int locationId, float marketValue, int yearBuilt, int squareFootage, String dwellingType,
 			String roofMaterial, String garageType, int fullBaths, int halfBaths, boolean pool) {
 		super();
