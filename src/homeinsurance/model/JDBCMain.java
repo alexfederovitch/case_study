@@ -9,6 +9,7 @@ import java.util.List;
 
 import homeinsurance.DAO.HomeownerDAO;
 import homeinsurance.DAO.LocationDAO;
+import homeinsurance.DAO.PolicyDAO;
 import homeinsurance.DAO.UserDAO;
 
 public class JDBCMain {
@@ -39,15 +40,21 @@ public class JDBCMain {
 //		Homeowner h = new Homeowner(2, "Alex", "Federovitch", dt, "1", "334852929", "alexf@pretendmail.com");
 //		insert_h_dao.insertHomeowner(h);
 		
-		LocationDAO l_dao = new LocationDAO();
-		List<Location> LocationList = l_dao.getAllLocations();
-		for (Location l : LocationList) {
-			System.out.printf("Location ID: %d User ID: %d Residence Type: %s", l.getLocationId(), l.getUserId(), l.getResidenceType());
-		}
+//		LocationDAO l_dao = new LocationDAO();
+//		List<Location> LocationList = l_dao.getAllLocations();
+//		for (Location l : LocationList) {
+//			System.out.printf("Location ID: %d User ID: %d Residence Type: %s", l.getLocationId(), l.getUserId(), l.getResidenceType());
+//		}
+//		
+//		LocationDAO insert_l_dao = new LocationDAO();
+//		Location l = new Location(0, 2, "House", "1418 Kenforest Drive", null, "Missouri City", "Texas", "77489", "Yes");
+//		insert_l_dao.insertLocation(l);
 		
-		LocationDAO insert_l_dao = new LocationDAO();
-		Location l = new Location(0, 2, "House", "1418 Kenforest Drive", null, "Missouri City", "Texas", "77489", "Yes");
-		insert_l_dao.insertLocation(l);
+//		PolicyDAO p_dao = new PolicyDAO();
+//		List<Policy> PolicyList = p_dao.getAllPolicies();
+//		for (Policy p : PolicyList) {
+//			System.out.prinf();
+//		}
 
 	}
 
