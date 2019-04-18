@@ -15,7 +15,6 @@ public class Policy {
 	
 	public Policy(int policyId, int quoteId, int userId, int term, Date effectiveDate, Date endDate,
 			String policyStatus) {
-		super();
 		this.policyId = policyId;
 		this.quoteId = quoteId;
 		this.userId = userId;

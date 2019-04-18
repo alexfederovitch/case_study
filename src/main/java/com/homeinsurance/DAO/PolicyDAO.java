@@ -161,15 +161,23 @@ public class PolicyDAO {
 			// Read the ResultSet
 			while (rs.next()) {
 				// Each iteration creates a new user
-				p = new Policy(0, 0, 0, 0, null, null, pString);
+				p = new Policy();
 				// Assign columns/fields to related fields in the User object
                                 // 1,2 and 3 represent column numbers/positions
+//				p.setPolicyId(rs.getInt(1));
+//				p.setQuoteId(rs.getInt(2));
+//				p.setUserId(rs.getInt(3));
+//				p.setTerm(rs.getInt(4));
+//				p.setEffectiveDate(rs.getDate(5));
+//				p.setEndDate(rs.getDate(6));
+//				p.setPolicyStatus(rs.getString(7));
+				
 				p.setPolicyId(rs.getInt(1));
 				p.setQuoteId(rs.getInt(2));
 				p.setUserId(rs.getInt(3));
-				p.setTerm(rs.getInt(4));
-				p.setEffectiveDate(rs.getDate(5));
-				p.setEndDate(rs.getDate(6));
+				p.setEffectiveDate(rs.getDate(4));
+				p.setEndDate(rs.getDate(5));
+				p.setTerm(rs.getInt(6));
 				p.setPolicyStatus(rs.getString(7));
 
 				// Add the policy to the list

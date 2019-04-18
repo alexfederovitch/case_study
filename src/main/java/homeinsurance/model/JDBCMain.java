@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.homeinsurance.DAO.HomeownerDAO;
 import com.homeinsurance.DAO.LocationDAO;
+import com.homeinsurance.DAO.PolicyDAO;
 import com.homeinsurance.DAO.PropertyDAO;
 import com.homeinsurance.DAO.UserDAO;
 
@@ -27,9 +28,20 @@ public class JDBCMain {
 //		for (User u : userList) {
 //			System.out.printf("User ID %d: %s\n", u.getUserId(),u.getUserName());
 //		}
+		
+		PolicyDAO p_dao = new PolicyDAO();
+		List<Policy> policyList = p_dao.getAllPolicies();
+		for (Policy p : policyList) {
+			Date date = (Date) p.getEffectiveDate();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String strDate = dateFormat.format(date);
+//			System.out.printf("Policy ID: %d Quote ID: %d User ID: %d  Effective Date: %tm/%te/%ty End Date: %tm/%te/%tY\n", p.getPolicyId(), p.getQuoteId(), p.getUserId(), p.getEffectiveDate(), p.getEffectiveDate(), p.getEffectiveDate(), p.getEndDate(), p.getEndDate(), p.getEndDate());
+//			System.out.printf("Term: %d  \n", p.getTerm());
+			System.out.println(strDate);
+		}
 
-		HomeownerDAO h_dao = new HomeownerDAO();
-		List<Homeowner> homeownerList = h_dao.getAllHomeowners();
+//		HomeownerDAO h_dao = new HomeownerDAO();
+//		List<Homeowner> homeownerList = h_dao.getAllHomeowners();
 //		for (Homeowner h : homeownerList) {
 //			String bool1 = h.isRetiredStatus();
 //			String data = bool1.contains("0") ? "No" : "Yes";
